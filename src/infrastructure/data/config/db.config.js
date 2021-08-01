@@ -6,6 +6,8 @@ module.exports = {
     host: process.env.HOST,
     dialect: 'mysql',
     define: {
-        timestamps: false
+        timestamps: false,
+        //prevent sequelize from pluralizing table names
+        freezeTableName: true
     }
 };

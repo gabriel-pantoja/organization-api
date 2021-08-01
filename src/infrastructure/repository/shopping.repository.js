@@ -1,4 +1,4 @@
-const shopping = require('../../infrastructure/data/models/shopping');
+const shopping = require('../data/models/shopping');
 
 module.exports = {
     getAll: async function (req, res) {

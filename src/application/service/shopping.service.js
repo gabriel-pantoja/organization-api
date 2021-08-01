@@ -1,6 +1,5 @@
 const shopping = require('../../infrastructure/repository/shopping.repository');
 
-
 module.exports = {
     getAll: async function () {
         return await shopping.getAll();
