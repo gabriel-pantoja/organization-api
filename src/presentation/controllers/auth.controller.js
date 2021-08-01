@@ -1,5 +1,5 @@
 const auth = require('../../application/service/auth.service');
-
+// teste
 module.exports = {
     login: async function (req, res) {
         try {
