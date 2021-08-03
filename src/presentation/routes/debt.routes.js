@@ -3,7 +3,7 @@ const routes = express.Router();
 const authService = require('../../application/service/auth.service')
 const debtController = require('../controllers/debt.controller')
 
-// routes.use(authService.check_token);
+routes.use(authService.check_token);
 
 routes.get('/debt', debtController.getAll);
 routes.get('/debt/:id', debtController.getById);
