@@ -15,7 +15,7 @@ module.exports = {
         if (!token) return res.status(401).json({ auth: false, message: 'No token.' });
 
         jwt.verify(token, process.env.KEY_JWT, function (err, decoded) {
-            if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+            if (err) return res.status(403).json({ auth: false, message: 'Failed to authenticate token.' });
             next();
         });
     }
