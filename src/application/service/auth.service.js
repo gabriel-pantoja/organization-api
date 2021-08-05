@@ -1,6 +1,6 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const auth = require('../../infrastructure/repository/auth.repository');
+const auth = require('../../infra/repositories/auth.repository');
 
 module.exports = {
     login: async function (req, res) {

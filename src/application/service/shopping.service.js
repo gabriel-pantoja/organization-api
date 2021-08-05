@@ -1,4 +1,4 @@
-const shopping = require('../../infrastructure/repository/shopping.repository');
+const shopping = require('../../infra/repositories/shopping.repository');
 
 module.exports = {
     getAll: async function () {

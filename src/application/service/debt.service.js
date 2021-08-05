@@ -1,4 +1,4 @@
-const debt = require('../../infrastructure/repository/debt.repository');
+const debt = require('../../infra/repositories/debt.repository');
 
 module.exports = {
   getAll: async function () {
