@@ -1,8 +1,18 @@
+const { Sequelize } = require('sequelize');
 const debt = require('../data/models/debt');
+const User = require('../data/models/user');
 
 module.exports = {
   getAll: async function (req, res) {
-    return await debt.findAll();
+    return await debt.findAll({
+      include: [{
+        model: User,
+        as: 'responsible',
+        required: true,
+        attributes: ['firstName', 'lastName']
+      }],
+      attributes: ['id', 'name', 'payDay', 'price'],
+    })
   },
   getById: async function (req, res) {
     return await debt.findByPk(req.params.id)
