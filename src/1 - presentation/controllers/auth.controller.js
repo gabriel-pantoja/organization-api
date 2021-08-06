@@ -1,4 +1,4 @@
-const auth = require('../../application/service/auth.service')
+const auth = require('../../2 - application/service/auth.service')
 
 module.exports = {
   login: async function (req, res) {

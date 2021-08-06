@@ -1,37 +1,44 @@
-const debt = require('../../application/service/debt.service')
+const shopping = require('../../2 - application/service/shopping.service')
 
 module.exports = {
   getAll: async function (req, res) {
     try {
-      return res.json(await debt.getAll())
+      return res.json(await shopping.getAll())
     } catch (err) {
       return res.status(400).json({ error: err.message })
     }
   },
   getById: async function (req, res) {
     try {
-      return res.json(await debt.getById(req))
+      return res.json(await shopping.getById(req))
     } catch (err) {
       return res.status(400).json({ error: err.message })
     }
   },
   post: async function (req, res) {
     try {
-      return res.json(await debt.post(req))
+      return res.json(await shopping.post(req))
     } catch (err) {
       return res.status(400).json({ error: err.message })
     }
   },
   put: async function (req, res) {
     try {
-      return res.json(await debt.put(req))
+      return res.json(await shopping.put(req))
     } catch (err) {
       return res.status(400).json({ error: err.message })
     }
   },
   delete: async function (req, res) {
     try {
-      return res.json(await debt.delete(req))
+      return res.json(await shopping.delete(req))
+    } catch (err) {
+      return res.status(400).json({ error: err.message })
+    }
+  },
+  deleteAll: async function (req, res) {
+    try {
+      return res.json(await shopping.deleteAll(req))
     } catch (err) {
       return res.status(400).json({ error: err.message })
     }
