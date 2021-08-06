@@ -1,4 +1,3 @@
-const { Sequelize } = require('sequelize')
 const debt = require('../data/models/debt')
 const User = require('../data/models/user')
 

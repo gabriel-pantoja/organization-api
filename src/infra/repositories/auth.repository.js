@@ -1,7 +1,5 @@
 require('dotenv').config()
 const User = require('../data/models/user')
-const bycript = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 
 module.exports = {
   login: async function (req, res) {
