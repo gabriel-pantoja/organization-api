@@ -1,7 +1,7 @@
 
 const { Sequelize, DataTypes } = require('sequelize')
 const config = require('../config/db.config')
-const User = require('./user')
+const User = require('./user.model')
 const sequelize = new Sequelize(config)
 
 const Debt = sequelize.define('debt', {

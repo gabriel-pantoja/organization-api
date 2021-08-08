@@ -1,39 +1,46 @@
-const debt = require('../../2 - application/service/debt.service')
+const DebtService = require('../../2 - application/service/debt.service')
+const HttpResponse = require('../../3 - domain/models/http-response.model')
 
-module.exports = {
-  getAll: async function (req, res) {
+const debtService = new DebtService()
+
+module.exports = class DebtController {
+  async getAll (req, res) {
     try {
-      return res.json(await debt.getAll())
+      return HttpResponse.ok(res, await debtService.getAll())
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  getById: async function (req, res) {
+  }
+
+  async getById (req, res) {
     try {
-      return res.json(await debt.getById(req))
+      return HttpResponse.ok(res, await debtService.getById(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  post: async function (req, res) {
+  }
+
+  async post (req, res) {
     try {
-      return res.json(await debt.post(req))
+      return HttpResponse.ok(res, await debtService.post(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  put: async function (req, res) {
+  }
+
+  async put (req, res) {
     try {
-      return res.json(await debt.put(req))
+      return HttpResponse.ok(res, await debtService.put(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  delete: async function (req, res) {
+  }
+
+  async delete (req, res) {
     try {
-      return res.json(await debt.delete(req))
+      return HttpResponse.ok(res, await debtService.delete(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
   }
 }

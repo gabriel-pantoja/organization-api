@@ -1,13 +1,16 @@
-const auth = require('../../2 - application/service/auth.service')
+const AuthService = require('../../2 - application/service/auth.service')
+const HttpResponse = require('../../3 - domain/models/http-response.model')
 
-module.exports = {
-  login: async function (req, res) {
+const authService = new AuthService()
+
+module.exports = class AuthController {
+  async login (req, res) {
     try {
-      const response = await auth.login(req)
-      if (response === null) return res.status(401).json('e-mail incorreto')
-      return res.status(200).json({ token: response })
+      const token = await authService.login(req)
+      if (token === null) return HttpResponse.unauthorized(res, 'e-mail incorreto')
+      return HttpResponse.ok(res, { token: token })
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
   }
 }

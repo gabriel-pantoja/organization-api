@@ -1,9 +1,9 @@
-const debt = require('../data/models/debt')
-const User = require('../data/models/user')
+const Debt = require('../data/models/debt.model')
+const User = require('../data/models/user.model')
 
-module.exports = {
-  getAll: async function (req, res) {
-    return await debt.findAll({
+module.exports = class DebtRepository {
+  async getAll (req, res) {
+    return await Debt.findAll({
       include: [{
         model: User,
         as: 'responsible',
@@ -12,19 +12,23 @@ module.exports = {
       }],
       attributes: ['id', 'name', 'payDay', 'price']
     })
-  },
-  getById: async function (req, res) {
-    return await debt.findByPk(req.params.id)
-  },
-  post: async function (req, res) {
-    return await debt.create(req.body)
-  },
-  put: async function (req, res) {
-    const item = await debt.findByPk(req.params.id)
+  }
+
+  async getById (req, res) {
+    return await Debt.findByPk(req.params.id)
+  }
+
+  async post (req, res) {
+    return await Debt.create(req.body)
+  }
+
+  async put (req, res) {
+    const item = await Debt.findByPk(req.params.id)
     return await item.update(req.body)
-  },
-  delete: async function (req, res) {
-    const item = await debt.findByPk(req.params.id)
+  }
+
+  async delete (req, res) {
+    const item = await Debt.findByPk(req.params.id)
     return await item.destroy()
   }
 }

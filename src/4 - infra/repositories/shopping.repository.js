@@ -1,24 +1,29 @@
-const shopping = require('../data/models/shopping')
+const Shopping = require('../data/models/shopping.model')
 
-module.exports = {
-  getAll: async function (req, res) {
-    return await shopping.findAll()
-  },
-  getById: async function (req, res) {
-    return await shopping.findByPk(req.params.id)
-  },
-  post: async function (req, res) {
-    return await shopping.create(req.body)
-  },
-  put: async function (req, res) {
-    const item = await shopping.findByPk(req.params.id)
+module.exports = class ShoppingRepository {
+  async getAll (req, res) {
+    return await Shopping.findAll()
+  }
+
+  async getById (req, res) {
+    return await Shopping.findByPk(req.params.id)
+  }
+
+  async post (req, res) {
+    return await Shopping.create(req.body)
+  }
+
+  async put (req, res) {
+    const item = await Shopping.findByPk(req.params.id)
     return await item.update(req.body)
-  },
-  delete: async function (req, res) {
-    const item = await shopping.findByPk(req.params.id)
+  }
+
+  async delete (req, res) {
+    const item = await Shopping.findByPk(req.params.id)
     return await item.destroy()
-  },
-  deleteAll: async function (req, res) {
-    return await shopping.destroy({ where: req.body })
+  }
+
+  async deleteAll (req, res) {
+    return await Shopping.destroy({ where: req.body })
   }
 }

@@ -1,5 +1,7 @@
 const router = require('express').Router()
-const shoppingController = require('../controllers/shopping.controller')
+const ShoppingController = require('../controllers/shopping.controller')
+
+const shoppingController = new ShoppingController()
 
 router.get('/shopping', shoppingController.getAll)
 router.get('/shopping/:id', shoppingController.getById)

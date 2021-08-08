@@ -1,46 +1,53 @@
-const shopping = require('../../2 - application/service/shopping.service')
+const ShoppingService = require('../../2 - application/service/shopping.service')
+const HttpResponse = require('../../3 - domain/models/http-response.model')
 
-module.exports = {
-  getAll: async function (req, res) {
+const shoppingService = new ShoppingService()
+module.exports = class ShopppingController {
+  async getAll (req, res) {
     try {
-      return res.json(await shopping.getAll())
+      return HttpResponse.ok(res, await shoppingService.getAll())
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  getById: async function (req, res) {
+  }
+
+  async getById (req, res) {
     try {
-      return res.json(await shopping.getById(req))
+      return HttpResponse.ok(res, await shoppingService.getById(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  post: async function (req, res) {
+  }
+
+  async post (req, res) {
     try {
-      return res.json(await shopping.post(req))
+      return HttpResponse.ok(res, await shoppingService.post(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  put: async function (req, res) {
+  }
+
+  async put (req, res) {
     try {
-      return res.json(await shopping.put(req))
+      return HttpResponse.ok(res, await shoppingService.put(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  delete: async function (req, res) {
+  }
+
+  async delete (req, res) {
     try {
-      return res.json(await shopping.delete(req))
+      return HttpResponse.ok(res, await shoppingService.delete(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
-  },
-  deleteAll: async function (req, res) {
+  }
+
+  async deleteAll (req, res) {
     try {
-      return res.json(await shopping.deleteAll(req))
+      return HttpResponse.ok(res, await shoppingService.deleteAll(req))
     } catch (err) {
-      return res.status(400).json({ error: err.message })
+      return HttpResponse.badRequest(res, err.message)
     }
   }
 }

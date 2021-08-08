@@ -1,5 +1,7 @@
 const router = require('express').Router()
-const debtController = require('../controllers/debt.controller')
+const DebtController = require('../controllers/debt.controller')
+
+const debtController = new DebtController()
 
 router.get('/debt', debtController.getAll)
 router.get('/debt/:id', debtController.getById)

@@ -1,22 +1,28 @@
-const shopping = require('../../4 - infra/repositories/shopping.repository')
+const ShoppingRepository = require('../../4 - infra/repositories/shopping.repository')
 
-module.exports = {
-  getAll: async function () {
-    return await shopping.getAll()
-  },
-  getById: async function (req, res) {
-    return await shopping.getById(req)
-  },
-  post: async function (req, res) {
-    return await shopping.post(req)
-  },
-  put: async function (req, res) {
-    return await shopping.put(req)
-  },
-  delete: async function (req, res) {
-    return await shopping.delete(req)
-  },
-  deleteAll: async function (req, res) {
-    return await shopping.deleteAll(req)
+const shoppingRepository = new ShoppingRepository()
+module.exports = class ShoppingService {
+  async getAll (req, res) {
+    return await shoppingRepository.getAll()
+  }
+
+  async getById (req, res) {
+    return await shoppingRepository.getById(req)
+  }
+
+  async post (req, res) {
+    return await shoppingRepository.post(req)
+  }
+
+  async put (req, res) {
+    return await shoppingRepository.put(req)
+  }
+
+  async delete (req, res) {
+    return await shoppingRepository.delete(req)
+  }
+
+  async deleteAll (req, res) {
+    return await shoppingRepository.deleteAll(req)
   }
 }

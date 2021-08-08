@@ -1,16 +1,18 @@
 require('dotenv').config()
+const AuthRepository = require('../../4 - infra/repositories/auth.repository')
 const jwt = require('jsonwebtoken')
-const auth = require('../../4 - infra/repositories/auth.repository')
 
-module.exports = {
-  login: async function (req, res) {
-    const user = await auth.login(req)
+const authRepository = new AuthRepository()
+
+module.exports = class AuthService {
+  async login (req, res) {
+    const user = await authRepository.login(req)
     if (user === null) return null
     const token = jwt.sign({ id: user.id }, process.env.KEY_JWT, { expiresIn: process.env.EXPIRES_JWT })
     return token
-  },
+  }
 
-  check_token: function (req, res, next) {
+  async checktoken (req, res, next) {
     const token = req.get('Authorization')
     if (!token) return res.status(401).json({ auth: false, message: 'No token.' })
 
