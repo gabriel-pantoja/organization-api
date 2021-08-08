@@ -1,12 +1,11 @@
-const express = require('express')
-const routes = express.Router()
+const router = require('express').Router()
 const shoppingController = require('../controllers/shopping.controller')
 
-routes.get('/shopping', shoppingController.getAll)
-routes.get('/shopping/:id', shoppingController.getById)
-routes.post('/shopping', shoppingController.post)
-routes.put('/shopping/:id', shoppingController.put)
-routes.delete('/shopping/:id', shoppingController.delete)
-routes.delete('/shopping', shoppingController.deleteAll)
+router.get('/shopping', shoppingController.getAll)
+router.get('/shopping/:id', shoppingController.getById)
+router.post('/shopping', shoppingController.post)
+router.put('/shopping/:id', shoppingController.put)
+router.delete('/shopping/:id', shoppingController.delete)
+router.delete('/shopping', shoppingController.deleteAll)
 
-module.exports = routes
+module.exports = router

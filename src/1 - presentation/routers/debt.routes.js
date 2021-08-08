@@ -1,11 +1,10 @@
-const express = require('express')
-const routes = express.Router()
+const router = require('express').Router()
 const debtController = require('../controllers/debt.controller')
 
-routes.get('/debt', debtController.getAll)
-routes.get('/debt/:id', debtController.getById)
-routes.post('/debt', debtController.post)
-routes.put('/debt/:id', debtController.put)
-routes.delete('/debt/:id', debtController.delete)
+router.get('/debt', debtController.getAll)
+router.get('/debt/:id', debtController.getById)
+router.post('/debt', debtController.post)
+router.put('/debt/:id', debtController.put)
+router.delete('/debt/:id', debtController.delete)
 
-module.exports = routes
+module.exports = router
