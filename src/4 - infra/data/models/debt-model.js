@@ -2,6 +2,7 @@
 const { Sequelize, DataTypes } = require('sequelize')
 const config = require('../config/db.config')
 const User = require('./user-model')
+const Attachment = require('./attachment-model')
 const sequelize = new Sequelize(config)
 
 const Debt = sequelize.define('debt', {
@@ -14,6 +15,14 @@ const Debt = sequelize.define('debt', {
     }
   },
   idUser: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notNull: true,
+      notEmpty: true
+    }
+  },
+  idAttachment: {
     type: DataTypes.INTEGER,
     allowNull: false,
     validate: {
@@ -42,4 +51,6 @@ const Debt = sequelize.define('debt', {
 })
 
 Debt.belongsTo(User, { foreignKey: 'idUser', as: 'responsible' })
+Debt.belongsTo(Attachment, { foreignKey: 'idAttachment', as: 'attachment' })
+
 module.exports = Debt
