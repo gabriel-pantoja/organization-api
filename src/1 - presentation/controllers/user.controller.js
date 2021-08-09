@@ -1,11 +1,12 @@
-const ShoppingService = require('../../2 - application/service/shopping.service')
+const UserService = require('../../2 - application/service/user.service')
 const HttpResponse = require('../../3 - domain/models/http-response.model')
 
-const shoppingService = new ShoppingService()
-module.exports = class ShopppingController {
+const userService = new UserService()
+
+module.exports = class UserController {
   async get (req, res) {
     try {
-      return HttpResponse.ok(res, await shoppingService.get(req))
+      return HttpResponse.ok(res, await userService.get())
     } catch (err) {
       return HttpResponse.badRequest(res, err.message)
     }
@@ -13,7 +14,15 @@ module.exports = class ShopppingController {
 
   async getById (req, res) {
     try {
-      return HttpResponse.ok(res, await shoppingService.getById(req))
+      return HttpResponse.ok(res, await userService.getById(req))
+    } catch (err) {
+      return HttpResponse.badRequest(res, err.message)
+    }
+  }
+
+  async getSelect (req, res) {
+    try {
+      return HttpResponse.ok(res, await userService.getSelect())
     } catch (err) {
       return HttpResponse.badRequest(res, err.message)
     }
@@ -21,7 +30,7 @@ module.exports = class ShopppingController {
 
   async post (req, res) {
     try {
-      return HttpResponse.ok(res, await shoppingService.post(req))
+      return HttpResponse.ok(res, await userService.post(req))
     } catch (err) {
       return HttpResponse.badRequest(res, err.message)
     }
@@ -29,7 +38,7 @@ module.exports = class ShopppingController {
 
   async put (req, res) {
     try {
-      return HttpResponse.ok(res, await shoppingService.put(req))
+      return HttpResponse.ok(res, await userService.put(req))
     } catch (err) {
       return HttpResponse.badRequest(res, err.message)
     }
@@ -37,15 +46,7 @@ module.exports = class ShopppingController {
 
   async delete (req, res) {
     try {
-      return HttpResponse.ok(res, await shoppingService.delete(req))
-    } catch (err) {
-      return HttpResponse.badRequest(res, err.message)
-    }
-  }
-
-  async deleteAll (req, res) {
-    try {
-      return HttpResponse.ok(res, await shoppingService.deleteAll(req))
+      return HttpResponse.ok(res, await userService.delete(req))
     } catch (err) {
       return HttpResponse.badRequest(res, err.message)
     }

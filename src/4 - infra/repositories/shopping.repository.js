@@ -1,7 +1,7 @@
 const Shopping = require('../data/models/shopping.model')
 
 module.exports = class ShoppingRepository {
-  async getAll (req, res) {
+  async get (req, res) {
     return await Shopping.findAll()
   }
 

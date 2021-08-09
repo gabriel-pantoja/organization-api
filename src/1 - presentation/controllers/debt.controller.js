@@ -4,9 +4,9 @@ const HttpResponse = require('../../3 - domain/models/http-response.model')
 const debtService = new DebtService()
 
 module.exports = class DebtController {
-  async getAll (req, res) {
+  async get (req, res) {
     try {
-      return HttpResponse.ok(res, await debtService.getAll())
+      return HttpResponse.ok(res, await debtService.get(req))
     } catch (err) {
       return HttpResponse.badRequest(res, err.message)
     }

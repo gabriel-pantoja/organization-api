@@ -3,7 +3,7 @@ const ShoppingController = require('../controllers/shopping.controller')
 
 const shoppingController = new ShoppingController()
 
-router.get('/shopping', shoppingController.getAll)
+router.get('/shopping', shoppingController.get)
 router.get('/shopping/:id', shoppingController.getById)
 router.post('/shopping', shoppingController.post)
 router.put('/shopping/:id', shoppingController.put)

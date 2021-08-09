@@ -2,7 +2,12 @@ const Debt = require('../data/models/debt.model')
 const User = require('../data/models/user.model')
 
 module.exports = class DebtRepository {
-  async getAll (req, res) {
+  async get (req, res) {
+    let where = {}
+
+    if (req.query.name !== '' && req.query.name !== undefined) {
+      where = { name: req.query.name }
+    }
     return await Debt.findAll({
       include: [{
         model: User,
@@ -10,7 +15,8 @@ module.exports = class DebtRepository {
         required: true,
         attributes: ['firstName', 'lastName']
       }],
-      attributes: ['id', 'name', 'payDay', 'price']
+      attributes: ['id', 'name', 'payDay', 'price'],
+      where: where
     })
   }
 

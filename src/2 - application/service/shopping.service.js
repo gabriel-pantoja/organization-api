@@ -2,8 +2,8 @@ const ShoppingRepository = require('../../4 - infra/repositories/shopping.reposi
 
 const shoppingRepository = new ShoppingRepository()
 module.exports = class ShoppingService {
-  async getAll (req, res) {
-    return await shoppingRepository.getAll()
+  async get (req, res) {
+    return await shoppingRepository.get(req)
   }
 
   async getById (req, res) {

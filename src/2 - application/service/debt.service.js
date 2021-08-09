@@ -3,8 +3,8 @@ const DebtRepository = require('../../4 - infra/repositories/debt.repository')
 const debtRepository = new DebtRepository()
 
 module.exports = class DebtService {
-  async getAll (req, res) {
-    return await debtRepository.getAll()
+  async get (req, res) {
+    return await debtRepository.get(req)
   }
 
   async getById (req, res) {
