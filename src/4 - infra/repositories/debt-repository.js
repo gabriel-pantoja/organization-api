@@ -1,5 +1,5 @@
-const Debt = require('../data/models/debt.model')
-const User = require('../data/models/user.model')
+const Debt = require('../data/models/debt-model')
+const User = require('../data/models/user-model')
 
 module.exports = class DebtRepository {
   async get (req, res) {

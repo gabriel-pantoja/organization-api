@@ -1,5 +1,5 @@
-const ShoppingService = require('../../2 - application/service/shopping.service')
-const HttpResponse = require('../../3 - domain/models/http-response.model')
+const ShoppingService = require('../../2 - application/service/shopping-service')
+const HttpResponse = require('../../3 - domain/models/http-response-model')
 
 const shoppingService = new ShoppingService()
 module.exports = class ShopppingController {

@@ -1,4 +1,4 @@
-const Shopping = require('../data/models/shopping.model')
+const Shopping = require('../data/models/shopping-model')
 
 module.exports = class ShoppingRepository {
   async get (req, res) {

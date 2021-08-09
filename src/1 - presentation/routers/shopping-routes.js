@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const ShoppingController = require('../controllers/shopping.controller')
+const ShoppingController = require('../controllers/shopping-controller')
 
 const shoppingController = new ShoppingController()
 

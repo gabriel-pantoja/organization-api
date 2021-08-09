@@ -1,5 +1,5 @@
 require('dotenv').config()
-const AuthRepository = require('../../4 - infra/repositories/auth.repository')
+const AuthRepository = require('../../4 - infra/repositories/auth-repository')
 const jwt = require('jsonwebtoken')
 
 const authRepository = new AuthRepository()

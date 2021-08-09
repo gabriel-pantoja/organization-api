@@ -1,4 +1,4 @@
-const DebtRepository = require('../../4 - infra/repositories/debt.repository')
+const DebtRepository = require('../../4 - infra/repositories/debt-repository')
 
 const debtRepository = new DebtRepository()
 

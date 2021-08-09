@@ -1,5 +1,5 @@
-const AuthService = require('../../2 - application/service/auth.service')
-const HttpResponse = require('../../3 - domain/models/http-response.model')
+const AuthService = require('../../2 - application/service/auth-service')
+const HttpResponse = require('../../3 - domain/models/http-response-model')
 
 const authService = new AuthService()
 

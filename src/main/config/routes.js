@@ -1,8 +1,8 @@
 const router = require('express').Router()
-const authRoutes = require('../../1 - presentation/routers/auth.routes')
-const shoppingRoutes = require('../../1 - presentation/routers/shopping.routes')
-const debtRoutes = require('../../1 - presentation/routers/debt.routes')
-const userRoutes = require('../../1 - presentation/routers/user.routes')
+const authRoutes = require('../../1 - presentation/routers/auth-routes')
+const shoppingRoutes = require('../../1 - presentation/routers/shopping-routes')
+const debtRoutes = require('../../1 - presentation/routers/debt-routes')
+const userRoutes = require('../../1 - presentation/routers/user-routes')
 
 router.get('/', function (req, res) {
   res.status(404).send('Not found Teste')

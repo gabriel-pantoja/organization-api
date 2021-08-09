@@ -1,5 +1,5 @@
-const DebtService = require('../../2 - application/service/debt.service')
-const HttpResponse = require('../../3 - domain/models/http-response.model')
+const DebtService = require('../../2 - application/service/debt-service')
+const HttpResponse = require('../../3 - domain/models/http-response-model')
 
 const debtService = new DebtService()
 

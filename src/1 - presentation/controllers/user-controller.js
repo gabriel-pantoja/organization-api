@@ -1,5 +1,5 @@
-const UserService = require('../../2 - application/service/user.service')
-const HttpResponse = require('../../3 - domain/models/http-response.model')
+const UserService = require('../../2 - application/service/user-service')
+const HttpResponse = require('../../3 - domain/models/http-response-model')
 
 const userService = new UserService()
 

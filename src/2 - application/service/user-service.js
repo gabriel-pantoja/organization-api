@@ -1,4 +1,4 @@
-const UserRepository = require('../../4 - infra/repositories/user.repository')
+const UserRepository = require('../../4 - infra/repositories/user-repository')
 
 const userRepository = new UserRepository()
 

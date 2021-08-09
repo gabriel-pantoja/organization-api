@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const DebtController = require('../controllers/debt.controller')
+const DebtController = require('../controllers/debt-controller')
 
 const debtController = new DebtController()
 

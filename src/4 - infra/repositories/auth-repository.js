@@ -1,5 +1,5 @@
 require('dotenv').config()
-const User = require('../data/models/user.model')
+const User = require('../data/models/user-model')
 
 module.exports = class AuthRepository {
   async login (req, res) {

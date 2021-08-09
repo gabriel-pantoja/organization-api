@@ -1,4 +1,4 @@
-const User = require('../data/models/user.model')
+const User = require('../data/models/user-model')
 
 module.exports = class UserRepository {
   async get (req, res) {

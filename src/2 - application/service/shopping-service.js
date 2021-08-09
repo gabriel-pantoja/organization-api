@@ -1,4 +1,4 @@
-const ShoppingRepository = require('../../4 - infra/repositories/shopping.repository')
+const ShoppingRepository = require('../../4 - infra/repositories/shopping-repository')
 
 const shoppingRepository = new ShoppingRepository()
 module.exports = class ShoppingService {
