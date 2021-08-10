@@ -5,7 +5,6 @@ const Attachment = require('../data/models/attachment-model')
 module.exports = class DebtRepository {
   async get (req, res) {
     let where = {}
-
     if (req.query.name !== '' && req.query.name !== undefined) {
       where = { name: req.query.name }
     }
@@ -35,8 +34,21 @@ module.exports = class DebtRepository {
 
   async post (req, res) {
     const body = JSON.parse(req.body.value)
-    body.attachmentPayment = req.file.filename
-    return await Debt.create(body)
+
+    return await Debt.create({
+      name: body.name,
+      idUser: body.idUser,
+      payDay: body.payDay,
+      price: body.price,
+      attachment: {
+        payment: req.file.filename
+      }
+    }, {
+      include: [{
+        model: Attachment,
+        as: 'attachment'
+      }]
+    })
   }
 
   async put (req, res) {

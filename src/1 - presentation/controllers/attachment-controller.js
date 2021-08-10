@@ -4,9 +4,9 @@ const HttpResponse = require('../../3 - domain/models/http-response-model')
 const attachmentService = new AttachmentService()
 
 module.exports = class AttachmentController {
-  async get (req, res) {
+  async download (req, res) {
     try {
-      const file = await attachmentService.get(req)
+      const file = await attachmentService.download(req)
       if (file !== null) {
         res.writeHead(200, {
           'Content-Type': 'image/png',

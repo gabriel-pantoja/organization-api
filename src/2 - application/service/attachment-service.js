@@ -3,7 +3,7 @@ const AttachmentRepository = require('../../4 - infra/repositories/attachment-re
 const attachmentRepository = new AttachmentRepository()
 
 module.exports = class AttachmentService {
-  async get (req, res) {
-    return await attachmentRepository.get(req)
+  async download (req, res) {
+    return await attachmentRepository.download(req)
   }
 }
