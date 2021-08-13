@@ -3,6 +3,7 @@ const { Sequelize, DataTypes } = require('sequelize')
 const config = require('../config/db.config')
 const User = require('./user-model')
 const Attachment = require('./attachment-model')
+
 const sequelize = new Sequelize(config)
 
 const Debt = sequelize.define('debt', {
@@ -47,6 +48,10 @@ const Debt = sequelize.define('debt', {
     validate: {
       notNull: true
     }
+  },
+  isPayment: {
+    type: DataTypes.BOOLEAN,
+    allowNull: true
   }
 })
 

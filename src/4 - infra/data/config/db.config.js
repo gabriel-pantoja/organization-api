@@ -9,5 +9,8 @@ module.exports = {
     timestamps: false,
     // prevent sequelize from pluralizing table names
     freezeTableName: true
+    // underscored: false // createdAt => craeted_at
+    // charset: 'utf8',
+    // collate: 'utf8_general_ci'
   }
 }

@@ -1,6 +1,9 @@
 const Debt = require('../data/models/debt-model')
 const User = require('../data/models/user-model')
 const Attachment = require('../data/models/attachment-model')
+const Linked = require('../data/models/linked-model')
+const DebtModel = require('../../3 - domain/models/debt-model')
+const LinkedModel = require('../../3 - domain/models/linked-model')
 
 module.exports = class DebtRepository {
   async get (req, res) {
@@ -8,7 +11,10 @@ module.exports = class DebtRepository {
     if (req.query.name !== '' && req.query.name !== undefined) {
       where = { name: req.query.name }
     }
-    return await Debt.findAll({
+    const listIds = []
+    const listDebt = []
+    const listLinked = []
+    await Debt.findAll({
       include: [
         {
           model: User,
@@ -23,9 +29,37 @@ module.exports = class DebtRepository {
           attributes: ['payment', 'checkingCopy']
         }
       ],
-      attributes: ['id', 'name', 'payDay', 'price'],
+      attributes: ['id', 'name', 'payDay', 'price', 'isPayment'],
       where: where
+    }).then(res => {
+      res.forEach(item => {
+        listIds.push(item.get('id'))
+        listDebt.push(new DebtModel(item))
+      })
     })
+
+    await Linked.findAll({
+      include: [
+        {
+          model: User,
+          as: 'user',
+          required: true,
+          attributes: ['firstName', 'lastName']
+        }
+      ],
+      where: { idDebt: listIds },
+      attributes: ['idUser', 'isPayment']
+    }).then(res => {
+      res.forEach(item => {
+        listLinked.push(new LinkedModel(item))
+      })
+    })
+
+    listDebt.forEach((item, index) => {
+      item.linkeds = listLinked
+    })
+
+    return listDebt
   }
 
   async getById (req, res) {
