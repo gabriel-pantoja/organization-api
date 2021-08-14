@@ -23,8 +23,13 @@ const Linked = sequelize.define('linked', {
   isPayment: {
     type: DataTypes.BOOLEAN,
     allowNull: true
+  },
+  checkingCopy: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 })
+
 Linked.removeAttribute('id')
 Linked.belongsTo(User, { foreignKey: 'idUser', as: 'user' })
 // Debt.belongsToMany(User, { through: 'linked' })

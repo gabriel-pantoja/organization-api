@@ -4,5 +4,6 @@ module.exports = class LinkedModel {
     this.firstName = res.user.firstName
     this.lastName = res.user.lastName
     this.isPayment = res.isPayment
+    this.checkingCopy = res.checkingCopy
   }
 }

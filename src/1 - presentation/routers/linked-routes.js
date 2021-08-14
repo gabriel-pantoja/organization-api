@@ -1,7 +1,8 @@
 const router = require('express').Router()
+const LinkedController = require('../controllers/linked-controller')
 const multer = require('multer')
 const imageStorage = multer.diskStorage({
-  destination: function (req, file, cb) { cb(null, 'uploads/comprovantes') },
+  destination: function (req, file, cb) { cb(null, 'uploads/comprovantes-usuario') },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
     cb(null, file.fieldname + '-' + uniqueSuffix)
@@ -14,12 +15,12 @@ const imageFileFilter = (req, file, cb) => {
   cb(null, true)
 }
 const upload = multer({ fileFilter: imageFileFilter, storage: imageStorage })
-  .single('comprovante')
+  .single('comprovante-usuario')
 
-const AttachmentController = require('../controllers/attachment-controller')
-const attachmentController = new AttachmentController()
+const linkedController = new LinkedController()
 
-router.post('/attachment/checking-copy', upload, attachmentController.uploadCheckingCopy)
-router.get('/attachment/download', attachmentController.download)
+router.get('/linked/download/:file', upload, linkedController.download)
+router.get('/linked/change-status-payment-user', linkedController.changeStatusPaymentUser)
+router.post('/linked/checking-copy-user', upload, linkedController.uploadCheckingCopyUser)
 
 module.exports = router

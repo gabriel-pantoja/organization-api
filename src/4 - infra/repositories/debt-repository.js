@@ -26,7 +26,7 @@ module.exports = class DebtRepository {
           model: Attachment,
           as: 'attachment',
           required: true,
-          attributes: ['payment', 'checkingCopy']
+          attributes: ['id', 'payment', 'checkingCopy']
         }
       ],
       attributes: ['id', 'name', 'payDay', 'price', 'isPayment'],
@@ -48,7 +48,7 @@ module.exports = class DebtRepository {
         }
       ],
       where: { idDebt: listIds },
-      attributes: ['idUser', 'isPayment']
+      attributes: ['idUser', 'isPayment', 'checkingCopy']
     }).then(res => {
       res.forEach(item => {
         listLinked.push(new LinkedModel(item))
@@ -93,5 +93,11 @@ module.exports = class DebtRepository {
   async delete (req, res) {
     const item = await Debt.findByPk(req.params.id)
     return await item.destroy()
+  }
+
+  async changeStatusPayment (req, res) {
+    const item = await Debt.findByPk(req.params.id)
+    item.update({ isPayment: item.get('isPayment') !== true })
+    return item
   }
 }

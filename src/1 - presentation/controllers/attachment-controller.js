@@ -4,6 +4,14 @@ const HttpResponse = require('../../3 - domain/models/http-response-model')
 const attachmentService = new AttachmentService()
 
 module.exports = class AttachmentController {
+  async uploadCheckingCopy (req, res) {
+    try {
+      return HttpResponse.ok(res, await attachmentService.uploadCheckingCopy(req))
+    } catch (err) {
+      return HttpResponse.badRequest(res, err.message)
+    }
+  }
+
   async download (req, res) {
     try {
       const file = await attachmentService.download(req)

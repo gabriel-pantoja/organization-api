@@ -24,5 +24,6 @@ router.get('/debt/:id', debtController.getById)
 router.post('/debt', upload, debtController.post)
 router.put('/debt/:id', debtController.put)
 router.delete('/debt/:id', debtController.delete)
+router.get('/debt/change-status-payment/:id', debtController.changeStatusPayment)
 
 module.exports = router

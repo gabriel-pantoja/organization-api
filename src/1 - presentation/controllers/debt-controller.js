@@ -43,4 +43,12 @@ module.exports = class DebtController {
       return HttpResponse.badRequest(res, err.message)
     }
   }
+
+  async changeStatusPayment (req, res) {
+    try {
+      return HttpResponse.ok(res, await debtService.changeStatusPayment(req))
+    } catch (err) {
+      return HttpResponse.badRequest(res, err.message)
+    }
+  }
 }

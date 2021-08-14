@@ -22,4 +22,8 @@ module.exports = class DebtService {
   async delete (req, res) {
     return await debtRepository.delete(req)
   }
+
+  async changeStatusPayment (req, res) {
+    return await debtRepository.changeStatusPayment(req)
+  }
 }

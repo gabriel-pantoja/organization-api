@@ -6,11 +6,7 @@ const sequelize = new Sequelize(config)
 const Attachment = sequelize.define('attachment', {
   payment: {
     type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notNull: true,
-      notEmpty: true
-    }
+    allowNull: true
   },
   checkingCopy: {
     type: DataTypes.STRING,
