@@ -19,8 +19,11 @@ const upload = multer({ fileFilter: imageFileFilter, storage: imageStorage })
 
 const linkedController = new LinkedController()
 
+router.get('/linked', upload, linkedController.get)
 router.get('/linked/download/:file', upload, linkedController.download)
 router.get('/linked/change-status-payment-user', linkedController.changeStatusPaymentUser)
 router.post('/linked/checking-copy-user', upload, linkedController.uploadCheckingCopyUser)
+router.post('/linked', linkedController.post)
+router.delete('/linked', linkedController.delete)
 
 module.exports = router

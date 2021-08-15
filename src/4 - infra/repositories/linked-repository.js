@@ -1,9 +1,57 @@
 const path = require('path')
 const fs = require('fs')
-
+const DebtModel = require('../../3 - domain/models/debt-model')
+const LinkedModel = require('../../3 - domain/models/linked-model')
+const User = require('../data/models/user-model')
+const Debt = require('../data/models/debt-model')
 const Linked = require('../data/models/linked-model')
 
 module.exports = class LinkedRepository {
+  async get (req, res) {
+    const listIds = []
+    const listDebt = []
+    const listLinked = []
+    await Debt.findAll({
+      attributes: ['id', 'name']
+    }).then(res => {
+      res.forEach(item => {
+        listIds.push(item.get('id'))
+        listDebt.push(new DebtModel(item))
+      })
+    })
+
+    await Linked.findAll({
+      include: [
+        {
+          model: User,
+          as: 'user',
+          required: true,
+          attributes: ['firstName', 'lastName']
+        }
+      ],
+      where: { idDebt: listIds },
+      attributes: ['idUser']
+    }).then(res => {
+      res.forEach(item => {
+        listLinked.push(new LinkedModel(item))
+      })
+    })
+
+    listDebt.forEach((item, index) => {
+      item.linkeds = listLinked
+    })
+
+    return listDebt
+  }
+
+  async post (req, res) {
+    return await Linked.create(req.body)
+  }
+
+  async delete (req, res) {
+    return await Linked.destroy({ where: req.body })
+  }
+
   async download (req, res) {
     const file = path.join('uploads/comprovantes-usuario', req.params.file)
     if (fs.existsSync(file)) {

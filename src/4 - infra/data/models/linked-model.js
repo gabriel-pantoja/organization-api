@@ -32,6 +32,6 @@ const Linked = sequelize.define('linked', {
 
 Linked.removeAttribute('id')
 Linked.belongsTo(User, { foreignKey: 'idUser', as: 'user' })
-// Debt.belongsToMany(User, { through: 'linked' })
+Linked.belongsTo(Debt, { foreignKey: 'idDebt', as: 'debt' })
 
 module.exports = Linked
