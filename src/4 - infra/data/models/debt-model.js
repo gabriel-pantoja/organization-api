@@ -47,7 +47,7 @@ const Debt = sequelize.define('debt', {
   },
   isPayment: {
     type: DataTypes.BOOLEAN,
-    allowNull: false
+    allowNull: true
   }
 })
 
