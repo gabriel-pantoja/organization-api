@@ -48,15 +48,15 @@ module.exports = class DebtRepository {
         }
       ],
       where: { idDebt: listIds },
-      attributes: ['idUser', 'isPayment', 'checkingCopy']
+      attributes: ['idDebt', 'idUser', 'isPayment', 'checkingCopy']
     }).then(res => {
       res.forEach(item => {
         listLinked.push(new LinkedModel(item))
       })
     })
 
-    listDebt.forEach((item, index) => {
-      item.linkeds = listLinked
+    listDebt.forEach((debt, index) => {
+      debt.linkeds = listLinked.filter(item => item.idDebt === debt.id)
     })
 
     return listDebt
@@ -73,16 +73,23 @@ module.exports = class DebtRepository {
       name: body.name,
       idUser: body.idUser,
       payDay: body.payDay,
-      price: body.price,
-      attachment: {
-        payment: req.file.filename
-      }
-    }, {
-      include: [{
-        model: Attachment,
-        as: 'attachment'
-      }]
+      price: body.price
     })
+
+    // return await Debt.create({
+    //   name: body.name,
+    //   idUser: body.idUser,
+    //   payDay: body.payDay,
+    //   price: body.price,
+    //   attachment: {
+    //     payment: req.file.filename
+    //   }
+    // }, {
+    //   include: [{
+    //     model: Attachment,
+    //     as: 'attachment'
+    //   }]
+    // })
   }
 
   async put (req, res) {

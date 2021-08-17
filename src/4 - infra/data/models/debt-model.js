@@ -25,11 +25,7 @@ const Debt = sequelize.define('debt', {
   },
   idAttachment: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      notNull: true,
-      notEmpty: true
-    }
+    allowNull: true
   },
   payDay: {
     type: DataTypes.DATE,
@@ -51,7 +47,7 @@ const Debt = sequelize.define('debt', {
   },
   isPayment: {
     type: DataTypes.BOOLEAN,
-    allowNull: true
+    allowNull: false
   }
 })
 

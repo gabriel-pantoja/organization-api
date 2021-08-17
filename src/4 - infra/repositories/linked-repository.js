@@ -11,6 +11,7 @@ module.exports = class LinkedRepository {
     const listIds = []
     const listDebt = []
     const listLinked = []
+
     await Debt.findAll({
       attributes: ['id', 'name']
     }).then(res => {
@@ -30,15 +31,15 @@ module.exports = class LinkedRepository {
         }
       ],
       where: { idDebt: listIds },
-      attributes: ['idUser']
+      attributes: ['idDebt', 'idUser']
     }).then(res => {
-      res.forEach(item => {
-        listLinked.push(new LinkedModel(item))
+      res.forEach(elemt => {
+        listLinked.push(new LinkedModel(elemt))
       })
     })
 
-    listDebt.forEach((item, index) => {
-      item.linkeds = listLinked
+    listDebt.forEach((debt, index) => {
+      debt.linkeds = listLinked.filter(item => item.idDebt === debt.id)
     })
 
     return listDebt
