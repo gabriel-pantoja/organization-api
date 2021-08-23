@@ -2,6 +2,8 @@ const Debt = require('../data/models/debt-model')
 const User = require('../data/models/user-model')
 const Attachment = require('../data/models/attachment-model')
 const Linked = require('../data/models/linked-model')
+const Month = require('../data/models/month-model')
+
 const DebtModel = require('../../3 - domain/models/debt-model')
 const LinkedModel = require('../../3 - domain/models/linked-model')
 
@@ -10,6 +12,9 @@ module.exports = class DebtRepository {
     let where = {}
     if (req.query.name !== '' && req.query.name !== undefined) {
       where = { name: req.query.name }
+    }
+    if (req.query.month !== '' && req.query.month !== undefined) {
+      where = { idMonth: req.query.month }
     }
     const listIds = []
     const listDebt = []
@@ -27,6 +32,12 @@ module.exports = class DebtRepository {
           as: 'attachment',
           required: true,
           attributes: ['id', 'payment', 'checkingCopy']
+        },
+        {
+          model: Month,
+          as: 'referenceMonth',
+          required: true,
+          attributes: ['id', 'name']
         }
       ],
       attributes: ['id', 'name', 'payDay', 'price', 'isPayment'],
@@ -72,6 +83,7 @@ module.exports = class DebtRepository {
     return await Debt.create({
       name: body.name,
       idUser: body.idUser,
+      idMonth: body.idMonth,
       payDay: body.payDay,
       price: body.price
     })
