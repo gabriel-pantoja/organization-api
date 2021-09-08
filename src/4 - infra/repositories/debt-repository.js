@@ -78,30 +78,23 @@ module.exports = class DebtRepository {
   }
 
   async post (req, res) {
+    console.log(req.files[0])
     const body = JSON.parse(req.body.value)
-
     return await Debt.create({
       name: body.name,
       idUser: body.idUser,
       idMonth: body.idMonth,
       payDay: body.payDay,
-      price: body.price
+      price: body.price,
+      attachment: {
+        payment: req.files[0].filename
+      }
+    }, {
+      include: [{
+        model: Attachment,
+        as: 'attachment'
+      }]
     })
-
-    // return await Debt.create({
-    //   name: body.name,
-    //   idUser: body.idUser,
-    //   payDay: body.payDay,
-    //   price: body.price,
-    //   attachment: {
-    //     payment: req.file.filename
-    //   }
-    // }, {
-    //   include: [{
-    //     model: Attachment,
-    //     as: 'attachment'
-    //   }]
-    // })
   }
 
   async put (req, res) {
