@@ -11,9 +11,14 @@ module.exports = class LinkedRepository {
     const listIds = []
     const listDebt = []
     const listLinked = []
+    let where = {}
+    if (req.query.month !== '' && req.query.month !== undefined) {
+      where = { idMonth: req.query.month }
+    }
 
     await Debt.findAll({
-      attributes: ['id', 'name']
+      attributes: ['id', 'name'],
+      where: where
     }).then(res => {
       res.forEach(item => {
         listIds.push(item.get('id'))
