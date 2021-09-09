@@ -36,7 +36,7 @@ module.exports = class DebtRepository {
           attributes: ['id', 'payment', 'checkingCopy']
         }
       ],
-      attributes: ['id', 'name', 'payDay', 'price', 'isPayment'],
+      attributes: ['id', 'name', 'payDay', 'price', 'isPayment', 'monthAndYear'],
       where: where
     }).then(res => {
       res.forEach(item => {
@@ -75,6 +75,7 @@ module.exports = class DebtRepository {
 
   async post (req, res) {
     const body = JSON.parse(req.body.value)
+    const path = `${req.files[0].fieldname.replace('faturas/', '')}/${req.files[0].filename}`
     return await Debt.create({
       name: body.name,
       idUser: body.idUser,
@@ -82,7 +83,7 @@ module.exports = class DebtRepository {
       payDay: body.payDay,
       price: body.price,
       attachment: {
-        payment: req.files[0].filename
+        payment: path
       }
     }, {
       include: [{
