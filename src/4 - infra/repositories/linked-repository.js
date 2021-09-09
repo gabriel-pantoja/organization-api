@@ -58,7 +58,7 @@ module.exports = class LinkedRepository {
   }
 
   async download (req, res) {
-    const file = path.join('uploads/comprovantes-usuario', req.params.file)
+    const file = path.join(`uploads/${req.query.type}`, req.query.file)
     if (fs.existsSync(file)) {
       const buff = fs.readFileSync(file)
       const img = Buffer.from(buff, 'base64')
@@ -69,9 +69,10 @@ module.exports = class LinkedRepository {
   }
 
   async uploadCheckingCopyUser (req, res) {
+    const path = `${req.files[0].fieldname.replace('comprovantes-usuario/', '')}/${req.files[0].filename}`
     return await Linked
       .update(
-        { checkingCopy: req.file.filename, isPayment: true },
+        { checkingCopy: path, isPayment: true },
         { where: { idUser: req.body.idUser } })
   }
 
