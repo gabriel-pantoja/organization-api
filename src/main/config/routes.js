@@ -5,7 +5,6 @@ const debtRoutes = require('../../1 - presentation/routers/debt-routes')
 const userRoutes = require('../../1 - presentation/routers/user-routes')
 const attachmentRoutes = require('../../1 - presentation/routers/attachment-routes')
 const linkedRoutes = require('../../1 - presentation/routers/linked-routes')
-const monthRoutes = require('../../1 - presentation/routers/month-routes')
 
 router.get('/', function (req, res) {
   res.status(404).send('Not found Teste')
@@ -17,7 +16,6 @@ router.use('/', shoppingRoutes)
 router.use('/', userRoutes)
 router.use('/', attachmentRoutes)
 router.use('/', linkedRoutes)
-router.use('/', monthRoutes)
 
 module.exports = app => {
   app.use('/api', router)

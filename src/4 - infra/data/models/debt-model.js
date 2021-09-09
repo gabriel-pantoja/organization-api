@@ -3,7 +3,6 @@ const { Sequelize, DataTypes } = require('sequelize')
 const config = require('../config/db.config')
 const User = require('./user-model')
 const Attachment = require('./attachment-model')
-const Month = require('./month-model')
 
 const sequelize = new Sequelize(config)
 
@@ -28,10 +27,6 @@ const Debt = sequelize.define('debt', {
     type: DataTypes.INTEGER,
     allowNull: true
   },
-  idMonth: {
-    type: DataTypes.INTEGER,
-    allowNull: false
-  },
   payDay: {
     type: DataTypes.DATE,
     allowNull: false,
@@ -53,11 +48,17 @@ const Debt = sequelize.define('debt', {
   isPayment: {
     type: DataTypes.BOOLEAN,
     allowNull: true
+  },
+  monthAndYear: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notNull: true
+    }
   }
 })
 
 Debt.belongsTo(User, { foreignKey: 'idUser', as: 'responsible' })
 Debt.belongsTo(Attachment, { foreignKey: 'idAttachment', as: 'attachment' })
-Debt.belongsTo(Month, { foreignKey: 'idMonth', as: 'referenceMonth' })
 
 module.exports = Debt

@@ -6,7 +6,7 @@ module.exports = class DebtModel {
     this.price = res.price
     this.isPayment = res.isPayment
     this.responsible = res.responsible
-    this.referenceMonth = res.referenceMonth
+    this.monthAndYear = res.monthAndYear
     this.attachment = res.attachment
     this.linkeds = null
   }
