@@ -70,16 +70,18 @@ module.exports = class LinkedRepository {
 
   async uploadCheckingCopyUser (req, res) {
     const path = `${req.files[0].fieldname.replace('comprovantes-usuario/', '')}/${req.files[0].filename}`
-    return await Linked
+    await Linked
       .update(
         { checkingCopy: path, isPayment: true },
-        { where: { idUser: req.body.idUser } })
+        { where: { idUser: req.body.idUser, idDebt: req.body.idDebt } })
+    return path
   }
 
   async changeStatusPaymentUser (req, res) {
-    let where = {}
-    where = { idDebt: req.query.idDebt, idUser: req.query.idUser }
-    const item = await Linked.update({ isPayment: req.query.status }, { where: where })
-    return item
+    return await Linked
+      .update(
+        { isPayment: req.query.status, checkingCopy: null },
+        { where: { idDebt: req.query.idDebt, idUser: req.query.idUser } }
+      )
   }
 }
