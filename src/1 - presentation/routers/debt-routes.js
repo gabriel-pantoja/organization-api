@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const multer = require('multer')
 const fs = require('fs')
+const token = require('../../main/helpers/token')
 
 const imageStorage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,6 +25,8 @@ const upload = multer({ fileFilter: imageFileFilter, storage: imageStorage }).an
 
 const DebtController = require('../controllers/debt-controller')
 const debtController = new DebtController()
+
+router.use(token.check)
 
 router.get('/debt', debtController.get)
 router.get('/debt/:id', debtController.getById)

@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const multer = require('multer')
 const fs = require('fs')
+const token = require('../../main/helpers/token')
 
 const imageStorage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,6 +25,8 @@ const upload = multer({ fileFilter: imageFileFilter, storage: imageStorage }).an
 
 const LinkedController = require('../controllers/linked-controller')
 const linkedController = new LinkedController()
+
+router.use(token.check)
 
 router.get('/linked', upload, linkedController.get)
 router.get('/linked/download', upload, linkedController.download)

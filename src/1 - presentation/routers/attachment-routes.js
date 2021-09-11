@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const multer = require('multer')
 const fs = require('fs')
+const token = require('../../main/helpers/token')
 
 const imageStorage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -24,6 +25,8 @@ const upload = multer({ fileFilter: imageFileFilter, storage: imageStorage }).an
 
 const AttachmentController = require('../controllers/attachment-controller')
 const attachmentController = new AttachmentController()
+
+router.use(token.check)
 
 router.post('/attachment/checking-copy', upload, attachmentController.uploadCheckingCopy)
 router.get('/attachment/download', attachmentController.download)

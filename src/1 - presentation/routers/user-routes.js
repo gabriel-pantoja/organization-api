@@ -1,7 +1,10 @@
 const router = require('express').Router()
-const UserController = require('../controllers/user-controller')
+const token = require('../../main/helpers/token')
 
+const UserController = require('../controllers/user-controller')
 const userController = new UserController()
+
+router.use(token.check)
 
 router.get('/user', userController.get)
 router.get('/user/:id', userController.getById)

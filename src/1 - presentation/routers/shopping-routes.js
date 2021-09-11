@@ -1,7 +1,10 @@
 const router = require('express').Router()
-const ShoppingController = require('../controllers/shopping-controller')
+const token = require('../../main/helpers/token')
 
+const ShoppingController = require('../controllers/shopping-controller')
 const shoppingController = new ShoppingController()
+
+router.use(token.check)
 
 router.get('/shopping', shoppingController.get)
 router.get('/shopping/:id', shoppingController.getById)
