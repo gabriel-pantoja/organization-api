@@ -27,20 +27,6 @@ const User = sequelize.define('user', {
       notNull: true,
       notEmpty: true
     }
-  },
-  lastLogin: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    validate: {
-      notNull: true
-    }
-  },
-  like: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    validate: {
-      notNull: true
-    }
   }
 })
 
