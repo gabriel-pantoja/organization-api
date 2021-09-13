@@ -27,6 +27,10 @@ const User = sequelize.define('user', {
       notNull: true,
       notEmpty: true
     }
+  },
+  photo: {
+    type: DataTypes.STRING,
+    allowNull: true
   }
 })
 
