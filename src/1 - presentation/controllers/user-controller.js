@@ -28,6 +28,24 @@ module.exports = class UserController {
     }
   }
 
+  async getUrlPhoto (req, res) {
+    try {
+      const file = await userService.getUrlPhoto(req)
+      console.log(file)
+      if (file !== null) {
+        res.writeHead(200, {
+          'Content-Type': 'image/png',
+          'Content-Length': file.length
+        })
+        return res.end(file)
+      } else {
+        return HttpResponse.badRequest(res, 'Não existe arquivo')
+      }
+    } catch (err) {
+      return HttpResponse.badRequest(res, err.message)
+    }
+  }
+
   async post (req, res) {
     try {
       return HttpResponse.ok(res, await userService.post(req))

@@ -15,6 +15,10 @@ module.exports = class UserService {
     return await userRepository.getSelect()
   }
 
+  async getUrlPhoto (req, res) {
+    return await userRepository.getUrlPhoto(req)
+  }
+
   async post (req, res) {
     return await userRepository.post(req)
   }
