@@ -31,7 +31,6 @@ module.exports = class UserController {
   async getUrlPhoto (req, res) {
     try {
       const file = await userService.getUrlPhoto(req)
-      console.log(file)
       if (file !== null) {
         res.writeHead(200, {
           'Content-Type': 'image/png',

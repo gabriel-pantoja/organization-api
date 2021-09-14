@@ -16,7 +16,7 @@ module.exports = class UserRepository {
   }
 
   async getUrlPhoto (req, res) {
-    const item = await User.findByPk(req.params.id, { attributes: ['pathPhoto'] })
+    const item = await User.findByPk(req.query.id, { attributes: ['pathPhoto'] })
     if (item !== null) {
       const file = path.join('uploads/photo', item.get().pathPhoto)
       if (fs.existsSync(file)) {
